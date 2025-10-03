@@ -1,0 +1,70 @@
+# Add your Python code here. E.g.
+from microbit import *
+from microbit import *
+import random
+
+# Starting money
+money = 20
+
+# Game intro
+print("Hi, my name is Bob!!!")
+sleep(2000)
+print("Welcome to the COOKIE GAMBLE MACHINE!")
+sleep(2000)
+print("Each gamble costs $5. Press button A to play, button B to quit.")
+sleep(2000)
+
+# Main game loop
+while True:
+    print("------------------------------------")
+    print("You currently have $" + str(money))
+    print("Press button A to gamble for a cookie!")
+    print("Press button B if you want to leave.")
+    
+    # Wait for a button press
+    while True:
+        if button_a.was_pressed():
+            five_dollars = True
+            break
+        elif button_b.was_pressed():
+            print("Thanks for visiting Bob's Cookie Machine! Goodbye!")
+            while True:
+                sleep(1000)  # End the program by looping forever
+        sleep(100)
+    
+    # Check if player has enough money
+    if money < 5:
+        print("Sorry, you don’t have enough money!")
+        print("GAME OVER")
+        break
+    
+    # Deduct $5 and play
+    money -= 5
+    print("You inserted $5...")
+    sleep(1000)
+    print("Spinning the cookie wheel...")
+    sleep(2000)
+    
+    # Random cookie outcome
+    number = random.randint(1, 8)
+    
+    if number == 1:
+        print("Bruh, You got a rotten cookie that fell on the ground. Eww!")
+    elif number == 2:
+        print("You got an old chocolate chip cookie... IMAGINE!!!")
+    elif number == 3:
+        print("Good boy! You got a DOUBLE CHUNK chocolate chip cookie! YUM!")
+    elif number == 4:
+        print("Wow! You got a caramel cookie. Fancy!")
+    elif number == 5:
+        print("I am sorry, you didn’t get ANYTHING... BOOOOOOOOOO!")
+    elif number == 6:
+        print("We ran out of cookies... but you get.........")
+        print("-100000 aura. Unlucky!")
+    elif number == 7:
+        print("Here’s an oatmeal cookie! (I heard it tastes weird...)")
+    elif number == 8:
+        print("OH NO! A poison cookie! (I heard it makes you get hypothermia...)")
+    
+    sleep(2000)
+
